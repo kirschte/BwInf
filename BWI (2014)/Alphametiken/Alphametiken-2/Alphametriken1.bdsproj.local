@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2014.09.12 19:38:27.586.pas,C:\Users\User\Documents\Borland Studio-Projekte\Unit1.pas=C:\Users\User\Desktop\Alphametiken\Alphametriken.pas</Transaction>
+    <Transaction>2014.09.12 19:38:27.586.dfm,C:\Users\User\Documents\Borland Studio-Projekte\Unit1.dfm=C:\Users\User\Desktop\Alphametiken\Alphametriken.dfm</Transaction>
+    <Transaction>2014.09.12 19:38:31.378.bdsproj,C:\Users\User\Documents\Borland Studio-Projekte\Project1.bdsproj=C:\Users\User\Desktop\Alphametiken\Alphametriken1.bdsproj</Transaction>
+    <Transaction>2014.09.25 17:09:55.103.pas,C:\Users\User\Desktop\Alphametiken\Libs\dglOpenGL.pas=</Transaction>
+    <Transaction>2014.09.25 17:12:18.401.pas,C:\Users\User\Desktop\Alphametiken\Unit1.pas=C:\Users\User\Desktop\Alphametiken\TIfschleifen.pas</Transaction>
+    <Transaction>2014.09.27 10:11:59.368.pas,C:\Users\User\Desktop\Alphametiken-2\Unit1.pas=C:\Users\User\Desktop\Alphametiken-2\Rechnenzwei.pas</Transaction>
+    <Transaction>2014.09.27 10:16:39.122.pas,C:\Users\User\Desktop\Alphametiken-2\Rechnenzwei.pas=</Transaction>
+    <Transaction>2014.09.27 10:45:19.500.pas,C:\Users\User\Desktop\Alphametiken-2\TIfschleifen.pas=C:\Users\User\Desktop\Alphametiken-2\TRechnensub.pas</Transaction>
+  </Transactions>
+</BorlandProject>

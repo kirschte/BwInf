@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2014.09.12 19:38:27.586.pas,C:\Users\User\Documents\Borland Studio-Projekte\Unit1.pas=C:\Users\User\Desktop\Alphametiken\Alphametriken.pas</Transaction>
+    <Transaction>2014.09.12 19:38:27.586.dfm,C:\Users\User\Documents\Borland Studio-Projekte\Unit1.dfm=C:\Users\User\Desktop\Alphametiken\Alphametriken.dfm</Transaction>
+    <Transaction>2014.09.12 19:38:31.378.bdsproj,C:\Users\User\Documents\Borland Studio-Projekte\Project1.bdsproj=C:\Users\User\Desktop\Alphametiken\Alphametriken1.bdsproj</Transaction>
+  </Transactions>
+</BorlandProject>

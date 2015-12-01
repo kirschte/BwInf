@@ -1,0 +1,173 @@
+\documentclass[11pt,a4paper,twocolumn,ngerman]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{lmodern}
+\usepackage{threeparttable}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[german]{struktex}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[all]{xy}
+\definecolor{hellrot}{HTML}{A21717}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+%\usepackage{epstopdf}
+\usepackage[colorlinks=true,linkcolor={hellrot}]{hyperref}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering}p{#1}} 
+\definecolor{lightblue}{RGB}{25,33,132}
+\definecolor{middlegray}{RGB}{100,100,100}
+\definecolor{dkgreen}{RGB}{1, 50, 32}
+\lstset{   language=Delphi,
+           numbers=left,
+           numberstyle=\tiny,
+           stepnumber=1,
+           numbersep=9pt,
+           % backgroundcolor=\color{listingbackground},
+           basicstyle=\scriptsize,
+           captionpos=b,
+           breaklines=true,
+           breakindent=20pt,
+           texcl=true,
+           % mathescape=true,
+           escapechar=•,  % ASCI Char #263 (als ALT+263 auf dem Numpad eingeben)
+           xleftmargin=10pt,
+           % escapebegin=$,
+           % escapeend=$,
+           extendedchars=true,
+           float=false,
+           frame=none,
+           rulesepcolor=\color{black},
+           rulesep=2pt,
+           framesep=3pt,
+           framexleftmargin=3pt,
+           framexrightmargin=3pt,
+           columns=[c]fixed,
+           basewidth={0.6em,0.45em},
+           fontadjust=false,
+           commentstyle=\color{middlegray}\ttfamily,
+           keywordstyle=\bfseries\ttfamily\color{lightblue}
+        }
+\author{TEAM \glqq{}Der LAMABÄR\grqq{}}
+\date{\today}
+\title{34. Bundeswettbewerb Informatik\\1. Aufgabe}
+\subtitle{Dokumentation}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Lösungsidee}
+Die Aufgabe beinhaltet zwei verschiedene Aufgaben, die Junioraufgabe 2 und die Hauptaufgabe 1. Entgegen der vorgeschlagenen Richtung habe ich zuerst die Hauptaufgabe bearbeitet und danach die Junioraufgabe 2. \\
+Formal wird das Problem, wie es in der 1. Aufgabe beschrieben ist, als \glqq{}Hamiltonpfadproblem\grqq{} bezeichnet. Es wird also ein Pfad gesucht, der jeden Knoten eines Graphens genau einmal enthält. Ein Knoten entspricht hier ein weißes Feld, auf den die Schildkröte gehen kann. \\
+Die Idee zur Lösung des Problems besteht im Wesentlichen in einer einfachen Rekursion, dargestellt in \autoref{fig:rekursion}. Die Idee dahinter ist, dass die Schildkröte rekursiv in alle Richtungen läuft und dabei eine Art \glqq{}Duftspur\grqq{} hinterlässt, sodass sie den Weg nicht doppelt gehen kann. Wenn die Schildkröte dann nicht mehr in eine Richtung laufen kann, dann wird geprüft, ob es noch ein weißes Feld gibt, auf welchem noch keine Duftspur hinterlassen wurde. Wenn dem so ist, dann geht die Schildkröte so lange zurück, bis sie ganz getreu der Rekursion in eine andere Richtung weitergehen kann. \\
+Die Junioraufgabe 2 habe ich dann damit gelöst, in dem das Hamiltonproblem ausgeführt wird und wenn die Schildkröte auf einem weißen Feld landet, dann wird eine Variable gesetzt, dass dieses Feld betretbar ist. Da durch die Rekursion alle weißen Felder begangen werden, die die Schildkröte begehen kann, kann man nach der Rekursion herausfinden, welche weißen Felder nicht begangen werden können, die die Schildkröte also nie erreichen kann. Es gibt sicherlich einfachere Wege dies zu tun, aber da ich die Lösung für das Hamiltonproblem bereits geschrieben habe, war dieser Weg einfacher und schneller zu programmieren.
+\begin{figure}[!hbtp]%
+  \caption{Nassi-Shneiderman-Diagramm zum Hamiltonsproblem}
+  \label{fig:rekursion}
+	\begin{centernss}
+		%\sProofOn
+		\begin{struktogramm}(85,80)[procedure Hamilton(direction:\pVar{string})]
+			\renewcommand{\pLanguage}{Pascal}
+			\assign{gehe(direction)}
+			\ifthenelse[15]{2}{1}{north = free}{\sTrue}{\sFalse}
+				\assign{Hamilton(north)}
+				\change
+			\ifend
+			\ifthenelse[15]{2}{1}{east = free}{\sTrue}{\sFalse}
+				\assign{Hamilton(east)}
+				\change
+			\ifend
+			\ifthenelse[15]{2}{1}{south = free}{\sTrue}{\sFalse}
+				\assign{Hamilton(south)}
+				\change
+			\ifend
+			\ifthenelse[15]{2}{1}{west = free}{\sTrue}{\sFalse}
+				\assign{Hamilton(west)}
+				\change
+			\ifend
+			\ifthenelse[15]{1}{1}{noch ein weißes Feld frei}{\sTrue}{\sFalse}
+				\assign{gehezurueck}
+				\change
+				\assign{Lösung gefunden}
+			\ifend
+		\end{struktogramm}
+	\end{centernss}
+\end{figure}
+\subsection{Laufzeitkomplexität}
+Bei dem Hamiltonpfadproblem besteht ein exponentieller Zusammenhang (s. \hyperlink{section.3}{Beispiele}), was mit der Komplexitätsklasse des Hamiltonpfadproblems (NP-vollständig) übereinstimmt, was impliziert, dass es keinen effizienteren Algorithmus mit z.B. $\mathcal{O} {(n)}$ oder gar $\mathcal{O} {(\log{n})}$ gibt. Jegliche Verbesserung des Codes würde die Steigung der exponentielle Funktion nur um ein Faktor verringern, sie kann jedoch nicht das exponentielle Wachstum verhindern. Daher habe ich mir gar nicht die Mühe gegeben, einen effizienteren Algorithmus zu schreiben, zumal dieser auch so schon die Beispiele in ein paar Millisekunden lösen kann. Die einzige Optimierung, die es gibt, ist die, dass der Algorithmus abbricht, wenn eine Lösung gefunden wurde.\\
+Die genaue Beschreibung der Laufzeitkomplexität in Form einer Gleichung war mir leider nicht möglich, da es von zu vielen Faktoren abhängt. So ist zum Beispiel der genaue Aufbau des Feldes, die Länge und Breite des Feldes und auch die Startposition der Schildkröte relevant. Selbst in dem WorstCase, in dem das Feld ein Quadrat ist und es keine hereinragenden schwarze \glqq{}Hindernisse\grqq{} gibt, kann man nichts genaueres ermitteln, da die schlimmste Startposition der Schildkröte von der Länge/Breite des Quadrats abhängt.
+\begin{center}
+	\begin{tikzpicture}[scale = 0.7]
+		\begin{axis}[ymin=1,ymode=log,
+			width=0.7\textwidth,height=0.3\textheight,
+			title={Anzahl der Schritte bei einem qudaratischen Feld},
+			xtick={3,8,15,24,35,48,63},
+			xlabel={Pfadlänge},
+			ylabel={Schrittanzahl},
+			enlarge x limits=0]
+			\addplot table[x index={0}, y index={1}] {Laufzeitanalyse.txt};
+		\end{axis}
+	\end{tikzpicture}
+	\captionof{figure}{Pfadlänge vs. Schrittanzahl}
+	\label{fig:Laufzeit}
+\end{center}
+Um aber trotzdem einmal beispielhaft zu verdeutlichen, dass hier ein exponentieller Zusammenhang besteht, habe ich einmal bei 2*2,3*3,4*4,5*5,6*6,7*7 und 8*8 Quadraten die Schildkröte an der Startposition starten lassen, an der diese die meisten \glqq {}Schritte\grqq{} gehen muss. Dann habe ich die Schritte von meinem Programm zählen lassen und diese in Relation zu der Pfadlänge gesetzt: \autoref{fig:Laufzeit}. Eine Tendenz ist hier sicherlich erkennbar, auch wenn diese nicht exakt linear ist. Man beachte, dass die Ordinate in dem Fall logarithmisch eingeteilt ist, sodass ein linearer Graph in dem Fall einem exponentiellen Graph entspricht, was meine obige These unterstützt.\\
+Die Berechnung der Anzahl der Schritte dauerte bei einem 7*7 und 8*8-Feld zwar ca. 4 Stunden, im Regelbetrieb, bei mehreren Hindernissen und keinen Quadraten, so wie es bei den Beispielen der Fall ist, dauert die Berechnung allerdings nie länger als eine Sekunde auf einem mittelmäßigen Rechner.
+\section{Umsetzung}
+Für die Umsetzung habe ich das Modell-View-Controller(MVC)-Prinzip verwendet, wobei ich View und Controller der Einfachheit halber zu einer Instanz vereint habe. Hinzu kommt eine objektorientierte Programmierung. Der View-Controller erfasst die Daten zu dem Feld und gibt eine Erstellung von diesem bei dem Modell in Auftrag; ein Objekt der Klasse TSpielfeld wird erstellt. Diese erstellt für jedes Feld in einem dynamischen Array ein Objekt der Klasse TFeld, welche Daten, wie die Eigenschaft, ob das Feld begehbar ist (s. Junioraufgabe 2) und Daten, die für das Hamiltonproblem benötigt werden, wie schwarzes, freies oder bereits begangenes Feld, enthält. Die Klasse TSpielfeld erzeugt auch die grafische Darstellung des aktuell gewählten Feld. Danach führt der Benutzer die Procedure \glqq{}Hamilton\grqq{} entweder direkt oder indirekt durch die Junioraufgabe 2 aus, welche dann wiederum die Rekursion ausführt. Als grafische Eingabemöglichkeit stehen einmal ein Editor und einmal das Öffnen mit einer Textdatei zur Verfügung.\\
+Ein UML-Klassendiagramm erachte ich aufgrund des recht einfachen Aufbaus und Lösungsweg für nicht notwendig, da dies keine neuen Erkenntnisse einbringt, die man nicht schon in dem obigen Text, in den \hyperlink{section.3}{Beispielen} oder im \hyperlink{section.4}{Quelltext} erlangen würde. Außerdem ist das, was ich noch nicht genannt habe, nämlich die grafische Ausgabe, die einen nicht unwesentlichen Anteil des Codes übernimmt, nicht so relevant.\\
+\section{Beispiele}
+Ich verwende die acht Beispiele (s. \autoref{tab:meinetabelle}), die vorgegeben wurden, wobei ich auf eine grafische Darstellung der Beispiele verzichte, da man dies entweder in meinem Programm nachsehen kann oder sich anderweitig ansehen kann.\\
+Da es für viele Beispiele mehrere Lösungen gibt, wurde hier nur eine beispielhafte Lösung zum Hamiltonpfad aufgeschrieben.
+\subsection{Beispieltabelle}
+	\begin{center}
+	\begin{threeparttable} 
+	\begin{large}
+	\renewcommand{\arraystretch}{1.5}
+	\caption{Beispiele}
+		\begin{tabular}{|c||C{1.5cm}||C{2.0cm}|C{8cm}||C{2.0cm}|}
+			\hline
+			& Höhe * Breite & Alle Felder erreichbar? & Hamiltonpfad (Beispiel) & Schritt-anzahl \tabularnewline 
+			\hline \hline
+			Beispiel 0 & 6*9 & \sTrue & WNNWSSSOOONNNOOOSSSWNN & 198  \tabularnewline 
+			\hline
+			Beispiel 1 & 7*11 & \sFalse & \sFalse & 1108  \tabularnewline 
+			\hline
+			Beispiel 2 & 5*8 & \sTrue & \sFalse & 76  \tabularnewline 
+			\hline
+			Beispiel 3 & 5*9 & \sTrue & OOOOSSWNWSWWWWNNO & 17   \tabularnewline 
+			\hline
+			Beispiel 4 & 3*15 & \sTrue & \sFalse & 12   \tabularnewline 
+			\hline
+			Beispiel 5 & 3*15 & \sTrue & WWWWWWWWWWWW & 12   \tabularnewline 
+			\hline
+			Beispiel 6 & 5*7 & \sTrue & \sFalse & 10   \tabularnewline 
+			\hline
+			Beispiel 7 & 5*12 & \sTrue & \sFalse & 169   \tabularnewline 
+			\hline
+		\end{tabular}
+		\label{tab:meinetabelle}
+	\end{large}
+	\end{threeparttable} 
+	\end{center}
+\section{Quelltext}
+Im Folgenden wird neben dem zentralen Quelltext, die eigentliche Rekursion, wie sie auch schon in dem Nassi-Sneiderman-Diagramm dargestellt wurde (s. \autoref{fig:rekursion}), dargelegt. Außerdem werden die Funktionen \glqq{}gehe\grqq{}, \glqq{}gehezurueck\grqq{} und \glqq{}frei\grqq{}, die für die Rekursion benötigt werden, im Folgendem dargelegt. Da der restliche Code entweder für die Kommunikation zwischen den Klassen (Getter, Setter und Constructor) oder für die grafische Aufbereitung inklusive das vorherige Erkennen von falschen Eingaben von dem Benutzer zuständig ist, wäre es nicht sinnvoll, diesen hier zu integrieren, da diese Komponente die eigentliche Lösungsfindung nicht beeinflusst. Da bei der Erzeugung jedes Objekts der Klasse TFeld \glqq{}nur\grqq{} zwei einfache in sich geschachtelte for-Schleifen ausgeführt werden, füge ich den Quelltext hier nicht hinzu.\\
+Aber zum besseren Verständnis habe ich einmal alle wichtigen Variablen der Klasse TSpielfeld samt Erklärungen hier noch hingeschrieben: \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\
+\subsection{Variablen}
+\lstinputlisting[language=Delphi, firstline=12, lastline=21,caption={Wichtige Variablen der Klasse TSpielfeld in Turbo Pascal}]{../uSpielfeld.pas}
+\begin{figure*}
+\subsection{Rekursion}
+\lstinputlisting[language=Delphi, firstline=83, lastline=144,caption={Die Rekursion mit sämtlichen verwendeten Prozeduren der Klasse TSpielfeld in Turbo Pascal (Teil 1)}]{../uSpielfeld.pas}
+\end{figure*}
+\begin{figure*}
+\lstinputlisting[language=Delphi, firstline=145, lastline=167,caption={Die Rekursion mit sämtlichen verwendeten Prozeduren der Klasse TSpielfeld in Turbo Pascal (Teil 2)}]{../uSpielfeld.pas}
+\subsection{Junioraufgabe 2}
+\lstinputlisting[language=Delphi, firstline=189, lastline=201,caption={Der Quelltext zur Lösung der Junioraufgabe 2 in: Klasse TSpielfeld in Turbo Pascal}]{../uSpielfeld.pas}
+\end{figure*}
+
+\listoffigures
+\end{document}

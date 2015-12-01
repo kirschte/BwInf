@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2015.09.14 15:20:22.459.bdsproj,C:\Users\User\Documents\Borland Studio-Projekte\Project1.bdsproj=C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\KonsoleParition1.bdsproj</Transaction>
+    <Transaction>2015.09.14 20:18:35.166.pas,C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\Unit1.pas=C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\TBaum.pas</Transaction>
+    <Transaction>2015.09.14 20:21:17.425.pas,C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\Unit1.pas=C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\TKnoten.pas</Transaction>
+    <Transaction>2015.09.14 20:21:29.513.pas,C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\TKnoten.pas=C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\uKnoten.pas</Transaction>
+    <Transaction>2015.09.14 20:21:33.337.pas,C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\TBaum.pas=C:\Users\User\ownCloud\IT\Projekte (privat, ohne Sinn)\BWI (2015)\3-Moritz\uBaum.pas</Transaction>
+  </Transactions>
+</BorlandProject>

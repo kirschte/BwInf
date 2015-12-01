@@ -1,0 +1,27 @@
+constructor TBaum.erzeuge(Flaschenanzahl:integer;Behälter:Array of integer);
+var Knotenarray: array of TKnoten; //Das dynamische Array, in der alle Knoten drin sind
+i,j:integer;
+begin
+    setlength(Knotenarray,1);
+    Knotenarray[0]:=TKnoten.erzeuge(0); //Wurzel des Baums; jeder Knoten bekommt einen Wert zugewiesen
+    for i:=1 to length(Behälterarray) do begin
+        for j:=1 to Behälterarray[i] do begin
+            setlength(Knotenarray,length(Knotenarray)+1); //erweitere das dynamische Array um einen Wert
+            Knotenarray[length(Knotenarray)+1]:=TKnoten.erzeuge(j); //und erzeuge einen neuen Knoten
+            for k:=1 to Behälterarray[i] do begin
+                Knotenarray[length(Knotenarray)-j-k-1].fügeZeigerhinzu(length(Knotenarray)-1); //Geändertes Konzept s. folgende Erläuterungen. Von jedem Knoten einer Ebene höher zeigt ein Zeiger: http://puu.sh/k1Oyr/35be0eddc2.png                                                                                                                                                                //auf alle Knoten einer Ebene darunter
+            end;
+        end;
+       
+    end;
+end;
+
+partition(rootKnoten:integer;wert:integer);
+var i:integer;
+begin
+    if wert=Flaschenanzahl then zaehler:=zaehler+1; //Eine Kombination gefunden
+    if wert>Flaschenanzahl then exit; //zu groß --> braucht nicht mehr weiter suchen
+    for i:=1 to length(Knotenarray[rootKnoten].getZeiger) do begin
+        partition(Knotenarray[rootKnoten].getZeiger[i],Knotenarray[rootKnoten].getWert+wert)
+    end;
+end;

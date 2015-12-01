@@ -1,0 +1,3 @@
+https://www2.informatik.uni-erlangen.de/teaching/SS2011/HalloWelt/BT_2011.pdf
+https://de.wikipedia.org/wiki/Backtracking
+https://de.wikipedia.org/wiki/Tiefensuche

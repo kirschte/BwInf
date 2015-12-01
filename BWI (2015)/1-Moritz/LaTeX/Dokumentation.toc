@@ -1,0 +1,10 @@
+\select@language {german}
+\contentsline {section}{\numberline {1}L\IeC {\"o}sungsidee}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Laufzeitkomplexit\IeC {\"a}t}{2}{subsection.1.1}
+\contentsline {section}{\numberline {2}Umsetzung}{2}{section.2}
+\contentsline {section}{\numberline {3}Beispiele}{2}{section.3}
+\contentsline {subsection}{\numberline {3.1}Beispieltabelle}{3}{subsection.3.1}
+\contentsline {section}{\numberline {4}Quelltext}{3}{section.4}
+\contentsline {subsection}{\numberline {4.1}Variablen}{3}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Rekursion}{4}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Junioraufgabe 2}{5}{subsection.4.3}
